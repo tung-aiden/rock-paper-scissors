@@ -43,12 +43,36 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let playerSelection = prompt("Enter rock, paper, or scissors").toLowerCase();
-
-if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-    console.log(playRound(playerSelection, getComputerChoice()))
-} else {
-    console.log("Invalid Input")
+function game() {
+    let computer_wins = 0;
+    let user_wins = 0;
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Enter rock, paper, or scissors").toLowerCase();
+        let computerSelection = getComputerChoice();
+        if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+           let result = playRound(playerSelection, computerSelection);
+            if (result.slice(4,7) === "Win") {
+                user_wins++;
+                console.log(result);
+           } else if (result.slice(4,7) === "Los") {
+                computer_wins++;
+                console.log(result)
+           } else {
+            console.log(result)
+           }
+        } else {
+            console.log("Invalid Input")
+        }
+    }
+    if (user_wins > computer_wins) {
+        console.log("User Wins!")
+    } else if (user_wins < computer_wins) {
+        console.log("Computer Wins!")
+    } else {
+        console.log("Tie!")
+    }
 }
+
+console.log(game())
 
 
